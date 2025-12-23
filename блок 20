@@ -1,0 +1,327 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "253c3bf9-545e-4197-a6fe-c6d74949b9fe",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# 1. Произведение компонент файла\n",
+    "def product_of_numbers(filename):\n",
+    "    with open(filename, 'r') as f:\n",
+    "        product = 1\n",
+    "        for line in f:\n",
+    "            for num in line.split():\n",
+    "                product *= float(num)\n",
+    "    return product"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "18d6dec5-6a3d-4ccf-93d1-095e9b553c13",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "\n",
+    "# 2. Положительные, потом отрицательные\n",
+    "def positive_then_negative(f_filename, g_filename):\n",
+    "    with open(f_filename, 'r') as f:\n",
+    "        numbers = list(map(int, f.read().split()))\n",
+    "    positives = [n for n in numbers if n > 0]\n",
+    "    negatives = [n for n in numbers if n < 0]\n",
+    "    with open(g_filename, 'w') as g:\n",
+    "        for num in positives + negatives:\n",
+    "            g.write(str(num) + ' ')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "bddbf037-b3d5-4ce2-9e14-f19d66142695",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# 3. Точные квадраты\n",
+    "def perfect_squares(f_filename, g_filename):\n",
+    "    import math\n",
+    "    with open(f_filename, 'r') as f:\n",
+    "        numbers = list(map(int, f.read().split()))\n",
+    "    squares = []\n",
+    "    for num in numbers:\n",
+    "        root = int(math.sqrt(abs(num)))\n",
+    "        if root * root == num:\n",
+    "            squares.append(num)\n",
+    "    with open(g_filename, 'w') as g:\n",
+    "        for num in squares:\n",
+    "            g.write(str(num) + ' ')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "9326293b-8734-4a83-ae3f-c8903ee0f1fc",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# 4. Сумма наибольшего и наименьшего\n",
+    "def sum_min_max(filename):\n",
+    "    with open(filename, 'r') as f:\n",
+    "        numbers = list(map(float, f.read().split()))\n",
+    "    return max(numbers) + min(numbers)\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "fb3ba012-99b7-4995-99f8-9e13608bd62d",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "\n",
+    "# 5. Год с наименьшим номером\n",
+    "def min_year(filename):\n",
+    "    with open(filename, 'r') as f:\n",
+    "        min_year = float('inf')\n",
+    "        for line in f:\n",
+    "            parts = line.split()\n",
+    "            if len(parts) >= 3:\n",
+    "                year = int(parts[2])\n",
+    "                if year < min_year:\n",
+    "                    min_year = year\n",
+    "    return min_year"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "fdcc2949-dce3-415f-a759-47432647332a",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# 6. Количество чётных чисел\n",
+    "def count_even(filename):\n",
+    "    with open(filename, 'r') as f:\n",
+    "        numbers = list(map(int, f.read().split()))    return sum(1 for n in numbers if n % 2 == 0)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "c41ba749-d0b9-40eb-8265-9ff19de03623",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "\n",
+    "# 7. Проверка первых двух символов\n",
+    "def check_first_two_digits(filename):\n",
+    "    with open(filename, 'r') as f:\n",
+    "        first_chars = f.read(2)\n",
+    "    if first_chars.isdigit():\n",
+    "        num = int(first_chars)\n",
+    "        return True, num % 2 == 0\n",
+    "    return False, False"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "302ca390-4685-4a60-8c5b-a559d6fe84e8",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# 8. Чётные числа\n",
+    "def even_numbers(f_filename, g_filename):\n",
+    "    with open(f_filename, 'r') as f:\n",
+    "        numbers = list(map(int, f.read().split()))\n",
+    "    evens = [n for n in numbers if n % 2 == 0]\n",
+    "    with open(g_filename, 'w') as g:\n",
+    "        for num in evens:\n",
+    "            g.write(str(num) + ' ')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "313a3817-fc82-4f15-bcb5-9214336a42fc",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "\n",
+    "# 9. Наибольший модуль среди нечётных позиций\n",
+    "def max_abs_odd_positions(filename):\n",
+    "    with open(filename, 'r') as f:\n",
+    "        numbers = list(map(float, f.read().split()))\n",
+    "    max_abs = 0\n",
+    "    for i in range(0, len(numbers), 2):  # индексация с 0\n",
+    "        if abs(numbers[i]) > max_abs:\n",
+    "            max_abs = abs(numbers[i])\n",
+    "    return max_abs"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "95edf2e4-5cbe-496f-9f5f-9e84105a8088",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# 10. Весенние даты\n",
+    "def spring_dates(filename):\n",
+    "    with open(filename, 'r') as f:\n",
+    "        spring = []\n",
+    "        for line in f:\n",
+    "            parts = line.split()\n",
+    "            if len(parts) >= 3:\n",
+    "                month = int(parts[1])\n",
+    "                if 3 <= month <= 5:\n",
+    "                    spring.append(line.strip())\n",
+    "    return spring\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "936b388f-3ae7-4cec-8f55-3cf58c7eca46",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "\n",
+    "# 11. Делятся на 3 и не делятся на 7\n",
+    "def divisible_by_3_not_7(f_filename, g_filename):\n",
+    "    with open(f_filename, 'r') as f:\n",
+    "        numbers = list(map(int, f.read().split()))\n",
+    "    result = [n for n in numbers if n % 3 == 0 and n % 7 != 0]\n",
+    "    with open(g_filename, 'w') as g:\n",
+    "        for num in result:\n",
+    "            g.write(str(num) + ' ')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "693d51ae-c6a7-4c82-b453-fb5d4b5f1a83",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "\n",
+    "# 12. Наименьшее среди чётных позиций\n",
+    "def min_even_positions(filename):\n",
+    "    with open(filename, 'r') as f:\n",
+    "        numbers = list(map(float, f.read().split()))\n",
+    "    min_val = float('inf')\n",
+    "    for i in range(1, len(numbers), 2):  # индексация с 0\n",
+    "        if numbers[i] < min_val:\n",
+    "            min_val = numbers[i]\n",
+    "    return min_val\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "ee1285cf-ac58-408d-81f7-37d3b76041ab",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "\n",
+    "# 13. Чётные и нечётные в отдельные файлы\n",
+    "def separate_even_odd(f_filename, g_filename, h_filename):\n",
+    "    with open(f_filename, 'r') as f:\n",
+    "        numbers = list(map(int, f.read().split()))\n",
+    "    evens = [n for n in numbers if n % 2 == 0]\n",
+    "    odds = [n for n in numbers if n % 2 != 0]\n",
+    "    with open(g_filename, 'w') as g:\n",
+    "        for num in evens:\n",
+    "            g.write(str(num) + ' ')\n",
+    "    with open(h_filename, 'w') as h:\n",
+    "        for num in odds:\n",
+    "            h.write(str(num) + ' ')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "16faa69d-646a-4616-99c5-b8972028dd13",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "\n",
+    "# 14. Без двух соседних чисел с одним знаком\n",
+    "def alternate_signs(f_filename, g_filename):\n",
+    "    with open(f_filename, 'r') as f:\n",
+    "        numbers = list(map(int, f.read().split()))\n",
+    "    positives = [n for n in numbers if n > 0]\n",
+    "    negatives = [n for n in numbers if n < 0]\n",
+    "    result = []\n",
+    "    i, j = 0, 0\n",
+    "    while i < len(positives) or j < len(negatives):\n",
+    "        if result and ((result[-1] > 0 and positives and i < len(positives)) or \n",
+    "                      (result[-1] < 0 and negatives and j < len(negatives))):\n",
+    "            if result[-1] > 0 and j < len(negatives):\n",
+    "                result.append(negatives[j])\n",
+    "                j += 1\n",
+    "            elif result[-1] < 0 and i < len(positives):\n",
+    "                result.append(positives[i])\n",
+    "                i += 1\n",
+    "        else:\n",
+    "            if i < len(positives):\n",
+    "                result.append(positives[i])\n",
+    "                i += 1\n",
+    "            elif j < len(negatives):\n",
+    "                result.append(negatives[j])\n",
+    "                j += 1\n",
+    "    with open(g_filename, 'w') as g:\n",
+    "        for num in result:\n",
+    "            g.write(str(num) + ' ')\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "1439d52c-3e14-41ce-a11a-fb77da93154c",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "\n",
+    "# 15. Два положительных, два отрицательных\n",
+    "def two_by_two(f_filename, g_filename):\n",
+    "    with open(f_filename, 'r') as f:\n",
+    "        numbers = list(map(int, f.read().split()))\n",
+    "    positives = [n for n in numbers if n > 0]\n",
+    "    negatives = [n for n in numbers if n < 0]\n",
+    "    result = []\n",
+    "    for i in range(0, len(positives), 2):\n",
+    "        if i + 1 < len(positives) and i // 2 < len(negatives) // 2:\n",
+    "            result.append(positives[i])\n",
+    "            result.append(positives[i + 1])\n",
+    "            result.append(negatives[i])\n",
+    "            result.append(negatives[i + 1])\n",
+    "    with open(g_filename, 'w') as g:\n",
+    "        for num in result:\n",
+    "            g.write(str(num) + ' ')"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python [conda env:base] *",
+   "language": "python",
+   "name": "conda-base-py"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.13.5"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
