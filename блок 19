@@ -1,0 +1,291 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "8f8b23f1-69a4-4959-b1e4-ec02b03c0814",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def last_k_lines(K, input_file, output_file):\n",
+    "    with open(input_file, 'r', encoding='utf-8') as f:\n",
+    "        lines = f.readlines()\n",
+    "    with open(output_file, 'w', encoding='utf-8') as f:\n",
+    "        f.writelines(lines[-K:])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "2a611a2b-1633-4995-9ae6-2cbf84745798",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def remove_last_k_lines(K, filename):\n",
+    "    with open(filename, 'r', encoding='utf-8') as f:\n",
+    "        lines = f.readlines()\n",
+    "    with open(filename, 'w', encoding='utf-8') as f:\n",
+    "        f.writelines(lines[:-K])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "dc7a4e7e-4b63-4dc3-8414-fb1e2c68ae86",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def remove_first_k_chars(K, filename):\n",
+    "    with open(filename, 'r', encoding='utf-8') as f:\n",
+    "        lines = f.readlines()\n",
+    "    with open(filename, 'w', encoding='utf-8') as f:\n",
+    "        for line in lines:\n",
+    "            f.write(line[K:] if len(line) > K else '')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "c5730dfb-61df-4191-8c2c-89e3f1e931b9",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def append_lines(file1, file2):\n",
+    "    with open(file1, 'r', encoding='utf-8') as f:\n",
+    "        lines1 = f.readlines()\n",
+    "    with open(file2, 'r', encoding='utf-8') as f:\n",
+    "        lines2 = f.readlines()\n",
+    "    with open(file1, 'w', encoding='utf-8') as f:\n",
+    "        for i in range(len(lines1)):\n",
+    "            line1 = lines1[i].rstrip('\\n')\n",
+    "            if i < len(lines2):\n",
+    "                line2 = lines2[i].rstrip('\\n')\n",
+    "                f.write(f\"{line1}{line2}\\n\")\n",
+    "            else:\n",
+    "                f.write(lines1[i])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "a1f6ebec-9229-48dd-a8a4-ff02379ca5df",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def remove_line_k(K, filename):\n",
+    "    with open(filename, 'r', encoding='utf-8') as f:\n",
+    "        lines = f.readlines()\n",
+    "    if 1 <= K <= len(lines):\n",
+    "        del lines[K-1]\n",
+    "        with open(filename, 'w', encoding='utf-8') as f:\n",
+    "            f.writelines(lines)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "8f1e3db5-de29-400d-b35a-97bcb6e55bf8",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import string\n",
+    "\n",
+    "def extract_punctuation(input_file, output_file):\n",
+    "    punctuation_chars = []\n",
+    "    with open(input_file, 'r', encoding='utf-8') as f:\n",
+    "        for char in f.read():\n",
+    "            if char in string.punctuation:\n",
+    "                punctuation_chars.append(char)\n",
+    "    with open(output_file, 'w', encoding='utf-8') as f:\n",
+    "        f.write(''.join(punctuation_chars))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "9ae39428-1cd6-40df-8a9f-00bf475d292c",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def count_and_sum_numbers(filename):\n",
+    "    count = 0\n",
+    "    total = 0\n",
+    "    with open(filename, 'r', encoding='utf-8') as f:\n",
+    "        for line in f:\n",
+    "            number_str = line.strip()\n",
+    "            if number_str:  # проверка на пустую строку\n",
+    "                count += 1\n",
+    "                total += int(number_str)\n",
+    "    return count, total"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "a620eed6-00e2-4d37-8106-ce88d5530bca",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def replace_empty_lines(S, filename):\n",
+    "    with open(filename, 'r', encoding='utf-8') as f:\n",
+    "        lines = f.readlines()\n",
+    "    with open(filename, 'w', encoding='utf-8') as f:\n",
+    "        for line in lines:\n",
+    "            if line.strip() == '':\n",
+    "                f.write(f\"{S}\\n\")\n",
+    "            else:\n",
+    "                f.write(line)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "fe886339-a907-455b-9055-80d3e0c15e33",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def center_text(filename):\n",
+    "    with open(filename, 'r', encoding='utf-8') as f:\n",
+    "        lines = f.readlines()\n",
+    "    with open(filename, 'w', encoding='utf-8') as f:\n",
+    "        for line in lines:\n",
+    "            line = line.rstrip('\\n')\n",
+    "            if line:\n",
+    "                line = line.rstrip()\n",
+    "                if len(line) % 2 == 1:\n",
+    "                    line = ' ' + line\n",
+    "                spaces = ' ' * ((50 - len(line)) // 2)\n",
+    "                f.write(f\"{spaces}{line}\\n\")\n",
+    "            else:\n",
+    "                f.write('\\n')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "4bc79f92-515a-4c7e-a15a-dfc99fbe455b",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def count_paragraphs(filename):\n",
+    "    with open(filename, 'r', encoding='utf-8') as f:\n",
+    "        content = f.read()\n",
+    "    paragraphs = content.split('\\n\\n')\n",
+    "    count = 0\n",
+    "    for para in paragraphs:\n",
+    "        if para.strip():  # не считаем пустые абзацы\n",
+    "            count += 1\n",
+    "    return count"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "e2d7d1dd-0f4e-4d2f-ba8c-ab162f350d07",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def right_align_text(filename):\n",
+    "    with open(filename, 'r', encoding='utf-8') as f:\n",
+    "        lines = f.readlines()\n",
+    "    with open(filename, 'w', encoding='utf-8') as f:\n",
+    "        for line in lines:\n",
+    "            line = line.rstrip('\\n')\n",
+    "            if line:\n",
+    "                line = line.rstrip()\n",
+    "                spaces = ' ' * (50 - len(line))\n",
+    "                f.write(f\"{spaces}{line}\\n\")\n",
+    "            else:\n",
+    "                f.write('\\n')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "66ef27ef-b2d7-44c0-9c3f-8ba15ec4b3d3",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def prepend_file(file1, file2):\n",
+    "    with open(file2, 'r', encoding='utf-8') as f:\n",
+    "        content2 = f.read()\n",
+    "    with open(file1, 'r', encoding='utf-8') as f:\n",
+    "        content1 = f.read()\n",
+    "    with open(file1, 'w', encoding='utf-8') as f:\n",
+    "        f.write(content2 + content1)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "18b1afe6-56cc-4c8d-8df2-54a8f8e7d974",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def insert_empty_line_before_k(K, filename):\n",
+    "    with open(filename, 'r', encoding='utf-8') as f:\n",
+    "        lines = f.readlines()\n",
+    "    if 1 <= K <= len(lines):\n",
+    "        lines.insert(K-1, '\\n')\n",
+    "        with open(filename, 'w', encoding='utf-8') as f:\n",
+    "            f.writelines(lines)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "9a69baf9-0f4a-4386-bda9-c692fb456990",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def duplicate_empty_lines(filename):\n",
+    "    with open(filename, 'r', encoding='utf-8') as f:\n",
+    "        lines = f.readlines()\n",
+    "    result = []\n",
+    "    for line in lines:\n",
+    "        result.append(line)\n",
+    "        if line.strip() == '':\n",
+    "            result.append(line)\n",
+    "    with open(filename, 'w', encoding='utf-8') as f:\n",
+    "        f.writelines(result)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "2f19b414-7549-40c5-8972-07efbaccf18b",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def remove_first_last_lines(filename):\n",
+    "    with open(filename, 'r', encoding='utf-8') as f:\n",
+    "        lines = f.readlines()\n",
+    "    if len(lines) >= 2:\n",
+    "        lines = lines[1:-1]\n",
+    "        with open(filename, 'w', encoding='utf-8') as f:\n",
+    "            f.writelines(lines)"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python [conda env:base] *",
+   "language": "python",
+   "name": "conda-base-py"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.13.5"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
