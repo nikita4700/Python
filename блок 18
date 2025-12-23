@@ -1,0 +1,365 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "86af0b99-244e-481e-b69c-2475f97cd011",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def segment_midpoint(x1, y1, x2, y2):\n",
+    "    return (x1 + x2) / 2, (y1 + y2) / 2\n",
+    "\n",
+    "def can_form_triangle(a, b, c):\n",
+    "    return a + b > c and a + c > b and b + c > a\n",
+    "\n",
+    "def triangle_area(a, b, c):\n",
+    "    p = (a + b + c) / 2\n",
+    "    return (p * (p - a) * (p - b) * (p - c)) ** 0.5"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "710c17d9-e2ed-455e-9231-d14511922858",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import math\n",
+    "\n",
+    "def distance(x1, y1, x2, y2):\n",
+    "    return math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)\n",
+    "\n",
+    "def triangle_perimeter(x1, y1, x2, y2, x3, y3):\n",
+    "    a = distance(x1, y1, x2, y2)\n",
+    "    b = distance(x2, y2, x3, y3)\n",
+    "    c = distance(x1, y1, x3, y3)\n",
+    "    return a + b + c if a + b > c and a + c > b and b + c > a else None\n",
+    "\n",
+    "def triangle_area_points(x1, y1, x2, y2, x3, y3):\n",
+    "    a = distance(x1, y1, x2, y2)\n",
+    "    b = distance(x2, y2, x3, y3)\n",
+    "    c = distance(x1, y1, x3, y3)\n",
+    "    if not (a + b > c and a + c > b and b + c > a):\n",
+    "        return None\n",
+    "    p = (a + b + c) / 2\n",
+    "    return math.sqrt(p * (p - a) * (p - b) * (p - c))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "6d3686d7-9de4-48ee-a3a9-2337a81668c7",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import math\n",
+    "\n",
+    "def gcd(a, b):\n",
+    "    return math.gcd(abs(a), b)\n",
+    "\n",
+    "def simplify_fraction(p, q):\n",
+    "    d = gcd(p, q)\n",
+    "    return p // d, q // d\n",
+    "\n",
+    "def fraction_to_decimal(p, q):\n",
+    "    return p / q"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "9e8a4afe-b9a0-4f10-b8bc-385deea168c3",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def line_equation(x1, y1, x2, y2):\n",
+    "    if x1 == x2:\n",
+    "        return None, x1\n",
+    "    k = (y2 - y1) / (x2 - x1)\n",
+    "    b = y1 - k * x1\n",
+    "    return k, b\n",
+    "\n",
+    "def are_parallel(k1, b1, k2, b2):\n",
+    "    return k1 == k2\n",
+    "\n",
+    "def point_on_line(k, b, x, y):\n",
+    "    if k is None:\n",
+    "        return x == b\n",
+    "    return abs(y - (k * x + b)) < 1e-10"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "59be8da3-a170-4047-8e04-14d11bcc0715",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import math\n",
+    "\n",
+    "def circle_area(r):\n",
+    "    return math.pi * r ** 2\n",
+    "\n",
+    "def circle_length(r):\n",
+    "    return 2 * math.pi * r\n",
+    "\n",
+    "def sector_area(r, angle):\n",
+    "    return math.pi * r ** 2 * angle / 360\n",
+    "\n",
+    "def inscribed_square_perimeter(r):\n",
+    "    side = r * math.sqrt(2)\n",
+    "    return 4 * side"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "51f1f09a-ed47-45f2-a3f5-3797b4645507",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def remove_char(s, char):\n",
+    "    return s.replace(char, '')\n",
+    "\n",
+    "def replace_char(s, old, new):\n",
+    "    return s.replace(old, new)\n",
+    "\n",
+    "def count_char(s, char):\n",
+    "    return s.count(char)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "9d0c23fd-5b37-4430-bd03-c77a878599b9",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def print_matrix(matrix):\n",
+    "    for row in matrix:\n",
+    "        print(row)\n",
+    "\n",
+    "def add_matrices(a, b):\n",
+    "    return [[a[i][j] + b[i][j] for j in range(len(a[0]))] for i in range(len(a))]\n",
+    "\n",
+    "def multiply_matrices(a, b):\n",
+    "    result = [[0 for _ in range(len(b[0]))] for _ in range(len(a))]\n",
+    "    for i in range(len(a)):\n",
+    "        for j in range(len(b[0])):\n",
+    "            for k in range(len(b)):\n",
+    "                result[i][j] += a[i][k] * b[k][j]\n",
+    "    return result\n",
+    "\n",
+    "def transpose_matrix(matrix):\n",
+    "    return [[matrix[j][i] for j in range(len(matrix))] for i in range(len(matrix[0]))]"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "d5d0fe65-fd57-4c9e-b1ac-da1451a4ba81",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def vector_add(v1, v2):\n",
+    "    return [v1[i] + v2[i] for i in range(len(v1))]\n",
+    "\n",
+    "def vector_multiply_scalar(v, scalar):\n",
+    "    return [x * scalar for x in v]\n",
+    "\n",
+    "def vector_min_max(v):\n",
+    "    return min(v), max(v)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "8873aff5-a788-494a-bd93-7fca41eb2759",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def remove_digits(filename):\n",
+    "    with open(filename, 'r') as f:\n",
+    "        content = f.read()\n",
+    "    result = ''.join([c for c in content if not c.isdigit()])\n",
+    "    with open(filename, 'w') as f:\n",
+    "        f.write(result)\n",
+    "\n",
+    "def count_chars(filename):\n",
+    "    with open(filename, 'r') as f:\n",
+    "        return len(f.read())\n",
+    "\n",
+    "def count_lines(filename):\n",
+    "    with open(filename, 'r') as f:\n",
+    "        return len(f.readlines())"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "0f4e34b8-c3cf-46f5-88b3-a018e5f3e6df",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def complex_abs(z):\n",
+    "    return (z.real ** 2 + z.imag ** 2) ** 0.5\n",
+    "\n",
+    "def complex_multiply(z1, z2):\n",
+    "    return complex(z1.real * z2.real - z1.imag * z2.imag,\n",
+    "                   z1.real * z2.imag + z1.imag * z2.real)\n",
+    "\n",
+    "def complex_divide(z1, z2):\n",
+    "    denominator = z2.real ** 2 + z2.imag ** 2\n",
+    "    return complex((z1.real * z2.real + z1.imag * z2.imag) / denominator,\n",
+    "                   (z1.imag * z2.real - z1.real * z2.imag) / denominator)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "c2f0fa79-071b-455a-85f6-96fc27b34c46",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def power_fraction(p, q, n):\n",
+    "    return p ** n, q ** n\n",
+    "\n",
+    "def fractions_equal(p1, q1, p2, q2):\n",
+    "    return p1 * q2 == p2 * q1\n",
+    "\n",
+    "def fraction_greater(p1, q1, p2, q2):\n",
+    "    return p1 * q2 > p2 * q1\n",
+    "\n",
+    "def fraction_less(p1, q1, p2, q2):\n",
+    "    return p1 * q2 < p2 * q1\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "9e6a37e5-c178-4510-9c5d-033973fe5cde",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import math\n",
+    "\n",
+    "def vector_subtract(v1, v2):\n",
+    "    return (v1[0] - v2[0], v1[1] - v2[1])\n",
+    "\n",
+    "def dot_product(v1, v2):\n",
+    "    return v1[0] * v2[0] + v1[1] * v2[1]\n",
+    "\n",
+    "def vector_length(v):\n",
+    "    return math.sqrt(v[0] ** 2 + v[1] ** 2)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "dfaf343c-6cdc-4ce4-b471-dfdd85e70d40",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def insertion_sort(arr):\n",
+    "    for i in range(1, len(arr)):\n",
+    "        key = arr[i]\n",
+    "        j = i - 1\n",
+    "        while j >= 0 and arr[j] > key:\n",
+    "            arr[j + 1] = arr[j]\n",
+    "            j -= 1\n",
+    "        arr[j + 1] = key\n",
+    "    return arr\n",
+    "\n",
+    "def bubble_sort(arr):\n",
+    "    n = len(arr)\n",
+    "    for i in range(n):\n",
+    "        for j in range(0, n - i - 1):\n",
+    "            if arr[j] > arr[j + 1]:\n",
+    "                arr[j], arr[j + 1] = arr[j + 1], arr[j]\n",
+    "    return arr\n",
+    "\n",
+    "def selection_sort(arr):\n",
+    "    for i in range(len(arr)):\n",
+    "        min_idx = i\n",
+    "        for j in range(i + 1, len(arr)):\n",
+    "            if arr[j] < arr[min_idx]:\n",
+    "                min_idx = j\n",
+    "        arr[i], arr[min_idx] = arr[min_idx], arr[i]\n",
+    "    return arr"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "18da1cc0-40d9-4f0c-8835-258d1710655a",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def matrix_min(matrix):\n",
+    "    return min(min(row) for row in matrix)\n",
+    "\n",
+    "def matrix_max(matrix):\n",
+    "    return max(max(row) for row in matrix)\n",
+    "\n",
+    "def matrix_sum(matrix):\n",
+    "    return sum(sum(row) for row in matrix)\n",
+    "\n",
+    "def row_sum(matrix, row_index):\n",
+    "    return sum(matrix[row_index])\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "920252fb-3dd1-4129-9578-5d972578d50c",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def add_fractions(p1, q1, p2, q2):\n",
+    "    num = p1 * q2 + p2 * q1\n",
+    "    den = q1 * q2\n",
+    "    return simplify_fraction(num, den)\n",
+    "\n",
+    "def subtract_fractions(p1, q1, p2, q2):\n",
+    "    num = p1 * q2 - p2 * q1\n",
+    "    den = q1 * q2\n",
+    "    return simplify_fraction(num, den)\n",
+    "\n",
+    "def multiply_fractions(p1, q1, p2, q2):\n",
+    "    num = p1 * p2\n",
+    "    den = q1 * q2\n",
+    "    return simplify_fraction(num, den)\n",
+    "\n",
+    "def simplify_fraction(p, q):\n",
+    "    def gcd(a, b):\n",
+    "        while b:\n",
+    "            a, b = b, a % b\n",
+    "        return a\n",
+    "    d = gcd(abs(p), q)\n",
+    "    return p // d, q // d"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python [conda env:base] *",
+   "language": "python",
+   "name": "conda-base-py"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.13.5"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
